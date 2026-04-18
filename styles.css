@@ -1,0 +1,716 @@
+:root {
+  --bg: #f4efe7;
+  --panel: #fbf8f3;
+  --panel-strong: #fffdf9;
+  --line: #dccfbf;
+  --line-strong: #b79e85;
+  --ink: #1c2421;
+  --muted: #5e6a65;
+  --accent: #0f6c5a;
+  --accent-soft: #d8eee8;
+  --alert: #b14f32;
+  --alert-soft: #fae6de;
+  --warning: #8f6c17;
+  --warning-soft: #f4ebcb;
+  --info: #285f8f;
+  --info-soft: #dcecf8;
+  --shadow: 0 24px 60px rgba(43, 34, 24, 0.09);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 26%),
+    linear-gradient(160deg, #f4efe7 0%, #efe5d7 100%);
+  color: var(--ink);
+  font-family: "Aptos", "Segoe UI Variable", "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 320px;
+  min-height: 100vh;
+}
+
+.sidebar,
+.context-rail {
+  padding: 24px;
+}
+
+.sidebar {
+  background: rgba(251, 248, 243, 0.72);
+  border-right: 1px solid rgba(183, 158, 133, 0.3);
+  backdrop-filter: blur(14px);
+}
+
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #0f6c5a, #14483e);
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.brand-title,
+.panel-title,
+.hero-title {
+  margin: 0;
+  font-family: "Iowan Old Style", Georgia, serif;
+}
+
+.brand-title {
+  font-size: 28px;
+}
+
+.nav-group {
+  margin-bottom: 28px;
+}
+
+.nav-list,
+.mini-list,
+.stack,
+.tab-strip,
+.chip-row,
+.action-row,
+.detail-grid,
+.patient-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-list {
+  flex-direction: column;
+}
+
+.nav-button,
+.subnav-button,
+.ghost-button,
+.chip,
+.pill,
+.status-badge,
+.task-tag {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+
+.nav-button,
+.subnav-button,
+.ghost-button,
+.primary-button,
+.secondary-button {
+  min-height: 44px;
+  border: 0;
+  padding: 0 16px;
+  border-radius: 999px;
+}
+
+.nav-button,
+.subnav-button,
+.ghost-button {
+  background: transparent;
+  color: var(--ink);
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+}
+
+.nav-button:hover,
+.subnav-button:hover,
+.ghost-button:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(183, 158, 133, 0.36);
+}
+
+.nav-button.active,
+.subnav-button.active {
+  background: linear-gradient(140deg, #163831, #0f6c5a);
+  color: white;
+  box-shadow: 0 12px 30px rgba(15, 108, 90, 0.22);
+}
+
+.nav-meta {
+  color: inherit;
+  opacity: 0.75;
+  font-size: 12px;
+}
+
+.sidebar-card,
+.surface,
+.rail-card,
+.story-card,
+.queue-item,
+.timeline-event,
+.module-card,
+.task-card,
+.detail-card,
+.composer-card {
+  background: var(--panel);
+  border: 1px solid rgba(183, 158, 133, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.sidebar-card {
+  padding: 16px;
+}
+
+.sidebar-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.main-shell {
+  padding: 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.search-shell {
+  flex: 1;
+  position: relative;
+}
+
+.search-shell input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(183, 158, 133, 0.45);
+  background: rgba(255, 253, 249, 0.88);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ghost-button,
+.secondary-button {
+  background: rgba(255, 253, 249, 0.88);
+  border: 1px solid rgba(183, 158, 133, 0.45);
+}
+
+.primary-button {
+  background: linear-gradient(140deg, #0f6c5a, #1e8974);
+  color: white;
+  box-shadow: 0 16px 32px rgba(15, 108, 90, 0.24);
+}
+
+.surface {
+  padding: 22px;
+}
+
+.hero-surface {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.7), transparent 28%),
+    linear-gradient(145deg, #163831, #0f6c5a);
+  color: white;
+}
+
+.hero-title {
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 0.95;
+}
+
+.hero-copy {
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+}
+
+.metric-grid,
+.card-grid,
+.tri-grid,
+.board-grid,
+.queue-layout,
+.patient-grid,
+.visit-layout,
+.summary-grid,
+.detail-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.metric-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 22px;
+}
+
+.metric-card {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.metric-card strong,
+.stat-number {
+  display: block;
+  font-size: 30px;
+  margin-top: 10px;
+  font-family: "Iowan Old Style", Georgia, serif;
+}
+
+.content-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.tri-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.board-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.queue-layout {
+  grid-template-columns: 300px minmax(0, 1fr) 320px;
+}
+
+.patient-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.visit-layout {
+  grid-template-columns: 280px minmax(0, 1fr) 320px;
+}
+
+.summary-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.panel-header,
+.section-header,
+.queue-header,
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-title {
+  font-size: 24px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.story-card,
+.queue-item,
+.task-card,
+.timeline-event,
+.module-card,
+.detail-card,
+.composer-card {
+  padding: 18px;
+}
+
+.story-card h3,
+.queue-item h3,
+.task-card h3,
+.timeline-event h3,
+.module-card h3,
+.detail-card h3,
+.composer-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.story-card p,
+.queue-item p,
+.task-card p,
+.timeline-event p,
+.module-card p,
+.detail-card p,
+.composer-card p,
+.surface p,
+.surface li {
+  line-height: 1.55;
+}
+
+.module-card {
+  min-height: 180px;
+}
+
+.pill,
+.chip,
+.status-badge,
+.task-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+}
+
+.chip.active-chip {
+  background: var(--accent-soft);
+  border-color: rgba(15, 108, 90, 0.28);
+  color: #0f5e4e;
+}
+
+.status-badge.alert,
+.task-tag.alert {
+  background: var(--alert-soft);
+  border-color: rgba(177, 79, 50, 0.28);
+  color: #8e3f27;
+}
+
+.status-badge.warning,
+.task-tag.warning {
+  background: var(--warning-soft);
+  border-color: rgba(143, 108, 23, 0.28);
+  color: #7c5d14;
+}
+
+.status-badge.info,
+.task-tag.info {
+  background: var(--info-soft);
+  border-color: rgba(40, 95, 143, 0.28);
+  color: #20517c;
+}
+
+.timeline-stack,
+.queue-stack,
+.task-stack,
+.insight-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.task-card.done {
+  opacity: 0.7;
+}
+
+.task-card.done h3 {
+  text-decoration: line-through;
+}
+
+.input-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.input-grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(183, 158, 133, 0.5);
+  background: rgba(255, 253, 249, 0.96);
+  padding: 14px 16px;
+}
+
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.visit-notes {
+  min-height: 320px;
+}
+
+.rail-title {
+  margin: 0;
+  font-size: 22px;
+  font-family: "Iowan Old Style", Georgia, serif;
+}
+
+.context-rail {
+  background: rgba(251, 248, 243, 0.84);
+  border-left: 1px solid rgba(183, 158, 133, 0.3);
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rail-card {
+  padding: 18px;
+}
+
+.rail-card ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.rail-card li {
+  margin-bottom: 8px;
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  padding: 34px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.auth-card {
+  width: min(960px, 100%);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 24px;
+}
+
+.auth-hero,
+.auth-panel {
+  padding: 28px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+}
+
+.auth-hero {
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.25), transparent 34%),
+    linear-gradient(145deg, #163831, #0f6c5a);
+  color: white;
+}
+
+.auth-panel {
+  background: rgba(255, 253, 249, 0.96);
+  border: 1px solid rgba(183, 158, 133, 0.35);
+}
+
+.auth-panel h2 {
+  margin-top: 0;
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 34px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(183, 158, 133, 0.4);
+  margin: 18px 0;
+}
+
+.patient-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.patient-banner {
+  padding: 22px;
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at right top, rgba(255, 255, 255, 0.68), transparent 24%),
+    linear-gradient(145deg, #fffdf9, #f6efe3);
+  border: 1px solid rgba(183, 158, 133, 0.42);
+  box-shadow: var(--shadow);
+}
+
+.patient-banner h1 {
+  margin: 0;
+  font-size: 36px;
+  font-family: "Iowan Old Style", Georgia, serif;
+}
+
+.subnav-button {
+  border: 1px solid rgba(183, 158, 133, 0.45);
+  background: rgba(255, 253, 249, 0.88);
+}
+
+.queue-item.active,
+.timeline-event.active {
+  border-color: rgba(15, 108, 90, 0.4);
+  background: linear-gradient(145deg, #fffdf9, #eef7f4);
+}
+
+.kpi-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mini-stat {
+  min-width: 120px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(183, 158, 133, 0.35);
+}
+
+.mini-stat span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.mini-stat strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.caption {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1280px) {
+  .app-shell {
+    grid-template-columns: 250px minmax(0, 1fr);
+  }
+
+  .context-rail {
+    display: none;
+  }
+
+  .queue-layout,
+  .visit-layout,
+  .tri-grid,
+  .patient-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 920px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid rgba(183, 158, 133, 0.3);
+  }
+
+  .main-shell {
+    padding: 16px;
+  }
+
+  .metric-grid,
+  .card-grid,
+  .summary-grid,
+  .board-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-card {
+    grid-template-columns: 1fr;
+  }
+}
