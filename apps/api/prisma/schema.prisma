@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  DOCTOR
+  NURSE
+  ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum Triage {
+  LOW
+  MEDIUM
+  CRITICAL
+}
+
+enum EmergencyStatus {
+  WAITING
+  IN_TRIAGE
+  IN_TREATMENT
+  OBSERVATION
+  DISCHARGED
+}
+
+model User {
+  id           String          @id @default(uuid())
+  email        String          @unique
+  name         String
+  passwordHash String?
+  googleUid    String?         @unique
+  role         Role            @default(NURSE)
+  isActive     Boolean         @default(true)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  auditLogs    AuditLog[]
+  patients     Patient[]       @relation("PatientCreatedBy")
+  opdVisits    OpdVisit[]      @relation("VisitClinician")
+  emergencies  EmergencyCase[] @relation("EmergencyCreator")
+}
+
+model Patient {
+  id              String          @id @default(uuid())
+  name            String
+  age             Int
+  gender          Gender
+  contact         String
+  address         String          @default("")
+  medicalHistory  String          @default("")
+  createdById     String?
+  createdBy       User?           @relation("PatientCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  opdVisits       OpdVisit[]
+  emergencyCases  EmergencyCase[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@index([name])
+  @@index([contact])
+  @@index([gender])
+}
+
+model OpdVisit {
+  id           String    @id @default(uuid())
+  patientId    String
+  patient      Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  clinicianId  String?
+  clinician    User?     @relation("VisitClinician", fields: [clinicianId], references: [id], onDelete: SetNull)
+  date         DateTime
+  symptoms     String
+  diagnosis    String
+  prescription String
+  followUpAt   DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([patientId])
+  @@index([date])
+  @@index([followUpAt])
+}
+
+model EmergencyCase {
+  id             String          @id @default(uuid())
+  patientId      String?
+  patient        Patient?        @relation(fields: [patientId], references: [id], onDelete: SetNull)
+  patientName    String
+  age            Int?
+  gender         Gender?
+  contact        String?
+  chiefComplaint String?
+  triage         Triage          @default(MEDIUM)
+  status         EmergencyStatus @default(WAITING)
+  createdById    String?
+  createdBy      User?           @relation("EmergencyCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([status])
+  @@index([triage])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  actorId   String?
+  actor     User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  action    String
+  entity    String
+  entityId  String?
+  ipAddress String?
+  userAgent String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([actorId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+}

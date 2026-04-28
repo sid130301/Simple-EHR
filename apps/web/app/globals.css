@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f5f1e8;
+  --foreground: #17211f;
+  --card: #fffdf8;
+  --muted: #66736d;
+  --brand: #0f766e;
+  --brand-deep: #0f3d37;
+  --line: #e2dbce;
+}
+
+.dark {
+  --background: #0e1514;
+  --foreground: #edf7f2;
+  --card: #15211f;
+  --muted: #9db0aa;
+  --brand: #5eead4;
+  --brand-deep: #134e4a;
+  --line: #263936;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 30rem),
+    radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.14), transparent 28rem),
+    var(--background);
+  font-family: "Aptos Display", "Avenir Next", "Nunito Sans", sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(20, 184, 166, 0.28);
+}
+
+.glass-panel {
+  background: color-mix(in srgb, var(--card) 86%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+  box-shadow: 0 24px 80px rgba(15, 61, 55, 0.12);
+  backdrop-filter: blur(20px);
+}
+
+.animate-rise {
+  animation: rise 420ms ease both;
+}
+
+.animate-fade {
+  animation: fade 240ms ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

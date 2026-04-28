@@ -1,0 +1,24 @@
+{
+  "name": "healthnest-ehr",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Full-stack Electronic Health Record web application with Next.js, Express, Prisma, and PostgreSQL.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,green \"npm run dev --workspace @ehr/api\" \"npm run dev --workspace @ehr/web\"",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "db:generate": "npm run db:generate --workspace @ehr/api",
+    "db:migrate": "npm run db:migrate --workspace @ehr/api",
+    "db:seed": "npm run db:seed --workspace @ehr/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}
